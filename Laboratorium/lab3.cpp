@@ -53,8 +53,6 @@ public:
 		nazwa = rmebel.nazwa;
 		rmebel.nazwa = nullptr;
 
-		//zad. 5
-		liczba++;
 	}
 
 	// zad 1 d) destruktor	//
