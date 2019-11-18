@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Pionek">
+    <Position X="6.75" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Pionek::Kierunek" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Pionek.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CJAAAAAAAAAAAIAAAAGAQRAAAEAAAAABQAAAAQgAAAA=</HashCode>
+      <FileName>Pionek.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gangster">
+    <Position X="5.5" Y="7.5" Width="1.5" />
+    <InheritanceLine Type="Pionek">
+      <InheritanceModifierLabel ManuallyPlaced="true">
+        <Position X="-0.482" Y="0.06" />
+      </InheritanceModifierLabel>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAACAACAABAAAAAAAAAAAAAAAAAAAoA=</HashCode>
+      <FileName>Gangster.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Walizka">
+    <Position X="8.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAEAAAAAABAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Walizka.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rozgrywka">
+    <Position X="3.75" Y="0.5" Width="2.25" />
+    <AssociationLine Name="walizka" Type="Walizka">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="2.297" Y="6.462" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="gracz1" Type="Gangster">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.118" Y="1.609" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="gracz2" Type="Gangster" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.75" Y="5.324" />
+        <Point X="5.75" Y="5.699" />
+        <Point X="5.875" Y="5.699" />
+        <Point X="5.875" Y="7.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.706" Y="1.602" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>GAAAAIBAAQBAAAACAYAAAAgEAAAAEBBACAgAAEAIQCA=</HashCode>
+      <FileName>Rozgrywka.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="plikZapisu" />
+      <Field Name="walizka" />
+      <Field Name="gracz1" />
+      <Field Name="gracz2" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Zapis">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAACQAgAAgAACAAAAAAAgAAAAABA=</HashCode>
+      <FileName>Zapis.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
