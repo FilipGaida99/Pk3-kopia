@@ -11,7 +11,7 @@ public:
 private:
 	char znakWyswietlany;
 
-	bool CzyMoznaPrzejscNaPozycje(int pozycjaDocelowaX, int pozycjaDocelowaY, Pionek*** aktualnaMapa, const int rozmiarMapy);
+	bool CzyMoznaPrzejscNaPozycje(int pozycjaDocelowaX, int pozycjaDocelowaY, Pionek*** aktualnaMapa, const int rozmiarMapy) const;
 	
 protected: 
 	int pozycjaX;
@@ -23,11 +23,11 @@ public:
 
 	int PozycjaX();
 	int PozycjaY();
-	bool CzyJestZablokowany(Pionek*** aktualnaMapa, const int rozmiarMapy);
+	bool CzyJestZablokowany(Pionek*** aktualnaMapa, const int rozmiarMapy) const;
 	void UzyskajNowaPozycje(int& pozycjaX, int& pozycjaY, Kierunek kierunekRuchu);
 	bool PoruszOJednoPole(Kierunek kierunekRuchu,  Pionek*** aktualnaMapa, const int rozmiarMapy);
 	virtual bool WykonajRuch(Kierunek kierunekRuchu, Pionek*** aktualnaMapa, const int rozmiarMapy) = 0;
-	virtual char WyswietlZnak(Przynaleznosc czyjeWyswietlic);
+	virtual char WyswietlZnak(Przynaleznosc czyjeWyswietlic) const;
 
 	static Kierunek KierunekZStr(const char* kierunekStr);
 };

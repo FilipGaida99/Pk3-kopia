@@ -5,7 +5,7 @@
 using namespace std;
 
 template<class T>
-void Zapis::OdczytajKlaseZBin(std::ifstream & plik, T ** ptrDoWczytania, Pionek *** mapa)
+void Zapis::OdczytajKlaseZBin(std::ifstream & plik, T ** ptrDoWczytania, Pionek *** mapa) const
 {
 	T tymczasowy;
 	plik.read((char*)&tymczasowy, sizeof(T));

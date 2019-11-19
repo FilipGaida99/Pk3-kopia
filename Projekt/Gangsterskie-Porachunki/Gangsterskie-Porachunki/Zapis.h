@@ -17,7 +17,7 @@ private:
 	char* nazwaPliku;
 
 	template <class T>
-	void OdczytajKlaseZBin(std::ifstream& plik, T ** ptrDoWczytania, Pionek*** mapa);
+	void OdczytajKlaseZBin(std::ifstream& plik, T ** ptrDoWczytania, Pionek*** mapa) const;
 
 public:
 	Zapis();

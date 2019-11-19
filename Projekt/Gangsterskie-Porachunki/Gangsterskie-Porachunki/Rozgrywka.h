@@ -31,10 +31,10 @@ private:
 	friend Zapis& Zapis::operator>>(Rozgrywka& _ropzgrywka);
 	
 
-	void WyczyscBufor();
-	char* UsunWielkoscLiter(char* str);
-	void SprawdzUzycieKomendy(const char* strWejsciowy);
-	bool CzyGangsterzySaZablokowani(Gangster** gangsterzyGracza);
+	void WyczyscBufor() const;
+	char* UsunWielkoscLiter(char* str) const;
+	void SprawdzUzycieKomendy(const char* strWejsciowy) const;
+	bool CzyGangsterzySaZablokowani(Gangster** gangsterzyGracza) const;
 	Przynaleznosc WykonajTure(Przynaleznosc czyjaTura, Gangster** gangsterzyGracza);
 	bool PoruszWWprowadzonymKierunku(Pionek* wybranyPionek);
 	Gangster* WybierzGangstera(Gangster** gangsterzyGracza);
@@ -45,8 +45,8 @@ public:
 
 	bool Rozpocznij();
 	bool PetlaGry();
-	bool SprobujOglosicZwyciezce(Przynaleznosc wynikTury);
-	void WyswietlMape(Przynaleznosc czyjeWyswietlic = Neutralny);
+	bool SprobujOglosicZwyciezce(Przynaleznosc wynikTury) const;
+	void WyswietlMape(Przynaleznosc czyjeWyswietlic = Neutralny) const;
 };
 
 #endif // !ROZGRYWKA_CLASS

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void Rozgrywka::WyczyscBufor()
+void Rozgrywka::WyczyscBufor() const
 {
 	char pozostalosc;
 	do {
@@ -11,7 +11,7 @@ void Rozgrywka::WyczyscBufor()
 	} while (pozostalosc != '\n' && pozostalosc!=EOF);
 }
 
-char * Rozgrywka::UsunWielkoscLiter(char * str)
+char * Rozgrywka::UsunWielkoscLiter(char * str) const
 {
 	if (str == nullptr) {
 		return nullptr;
@@ -22,7 +22,7 @@ char * Rozgrywka::UsunWielkoscLiter(char * str)
 	return str;
 }
 
-void Rozgrywka::SprawdzUzycieKomendy(const char * strWejsciowy)
+void Rozgrywka::SprawdzUzycieKomendy(const char * strWejsciowy) const
 {
 	Komenda komendaWejsciowa = Brak;
 	if (!strcmp(strWejsciowy, "WY")) {
@@ -39,7 +39,7 @@ void Rozgrywka::SprawdzUzycieKomendy(const char * strWejsciowy)
 	}
 }
 
-bool Rozgrywka::CzyGangsterzySaZablokowani(Gangster ** gangsterzyGracza)
+bool Rozgrywka::CzyGangsterzySaZablokowani(Gangster ** gangsterzyGracza) const
 {
 	for (int i = 0; i < rozmiarMapy; i++) {
 		if (!gangsterzyGracza[i]->CzyJestZablokowany(mapa, rozmiarMapy)) {
@@ -229,7 +229,7 @@ bool Rozgrywka::PetlaGry()
 	return false;
 }
 
-bool Rozgrywka::SprobujOglosicZwyciezce(Przynaleznosc wynikTury)
+bool Rozgrywka::SprobujOglosicZwyciezce(Przynaleznosc wynikTury) const
 {
 	switch (wynikTury)
 	{
@@ -246,7 +246,7 @@ bool Rozgrywka::SprobujOglosicZwyciezce(Przynaleznosc wynikTury)
 	return true;
 }
 
-void Rozgrywka::WyswietlMape(Przynaleznosc czyjeWyswietlic)
+void Rozgrywka::WyswietlMape(Przynaleznosc czyjeWyswietlic) const
 {
 	for (int i = 0; i < rozmiarMapy; i++) {
 		for (int j = 0; j < rozmiarMapy; j++) {

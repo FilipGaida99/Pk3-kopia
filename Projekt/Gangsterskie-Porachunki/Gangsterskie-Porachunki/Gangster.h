@@ -16,7 +16,7 @@ public:
 	~Gangster();
 
 	bool WykonajRuch(Kierunek kierunekRuchu, Pionek*** aktualnaMapa, const int rozmiarMapy) override;
-	char WyswietlZnak(Przynaleznosc czyjeWyswietlic) override;
+	char WyswietlZnak(Przynaleznosc czyjeWyswietlic) const override;
 };
 
 #endif // !GANGSTER_CLASS

@@ -20,7 +20,7 @@ bool Gangster::WykonajRuch(Kierunek kierunekRuchu, Pionek *** aktualnaMapa, cons
 	return PoruszOJednoPole(kierunekRuchu, aktualnaMapa, rozmiarMapy);
 }
 
-char Gangster::WyswietlZnak(Przynaleznosc czyjeWyswietlic)
+char Gangster::WyswietlZnak(Przynaleznosc czyjeWyswietlic) const
 {
 	if (czyjeWyswietlic == czyjJest) {
 		return id + '1';

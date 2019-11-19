@@ -24,7 +24,7 @@ bool Walizka::WykonajRuch(Kierunek kierunekRuchu, Pionek *** aktualnaMapa, const
 	return czyUdaloSieWykonac;
 }
 
-Przynaleznosc Walizka::NaCzyjejStronie(int rozmiarMapy)
+Przynaleznosc Walizka::NaCzyjejStronie(int rozmiarMapy) const
 {
 	if (pozycjaX == 0) {
 		return Pierwszy;

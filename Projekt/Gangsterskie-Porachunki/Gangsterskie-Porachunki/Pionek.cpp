@@ -4,7 +4,7 @@
 
 
 
-bool Pionek::CzyMoznaPrzejscNaPozycje(int pozycjaDocelowaX, int pozycjaDocelowaY, Pionek *** aktualnaMapa, const int rozmiarMapy)
+bool Pionek::CzyMoznaPrzejscNaPozycje(int pozycjaDocelowaX, int pozycjaDocelowaY, Pionek *** aktualnaMapa, const int rozmiarMapy) const
 {
 	if (pozycjaDocelowaX < 0 || pozycjaDocelowaX >= rozmiarMapy || pozycjaDocelowaY < 0 || pozycjaDocelowaY >= rozmiarMapy) {
 		return false;
@@ -33,7 +33,7 @@ int Pionek::PozycjaY()
 }
 
 
-bool Pionek::CzyJestZablokowany(Pionek *** aktualnaMapa, const int rozmiarMapy)
+bool Pionek::CzyJestZablokowany(Pionek *** aktualnaMapa, const int rozmiarMapy) const
 {
 	for (int i = pozycjaX - 1; i <= pozycjaX + 1; i++) {
 		for (int j = pozycjaY - 1; j <= pozycjaY + 1; j++) {
@@ -95,7 +95,7 @@ bool Pionek::PoruszOJednoPole(Kierunek kierunekRuchu, Pionek *** aktualnaMapa, c
 	}
 }
 
-char Pionek::WyswietlZnak(Przynaleznosc czyjeWyswietlic)
+char Pionek::WyswietlZnak(Przynaleznosc czyjeWyswietlic) const
 {
 	return znakWyswietlany;
 }

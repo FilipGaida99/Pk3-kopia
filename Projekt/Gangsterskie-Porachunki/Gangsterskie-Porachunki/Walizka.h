@@ -11,7 +11,7 @@ public:
 	~Walizka();
 
 	bool WykonajRuch(Kierunek kierunekRuchu, Pionek*** aktualnaMapa, const int rozmiarMapy) override;
-	Przynaleznosc NaCzyjejStronie(int rozmiarMapy);
+	Przynaleznosc NaCzyjejStronie(int rozmiarMapy) const;
 };
 
 #endif // !WALIZKA_CLASS
