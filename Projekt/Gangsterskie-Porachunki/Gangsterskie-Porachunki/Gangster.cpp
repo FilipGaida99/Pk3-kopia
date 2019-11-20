@@ -1,6 +1,6 @@
 #include "Gangster.h"
 
-
+using Kierunek = Koordynaty::Kierunek;
 
 Gangster::Gangster(): Gangster('E', -1, -1, Neutralny, -1)
 {

@@ -15,7 +15,7 @@ public:
 	Gangster(char _znakWyswietlany, int _pozycjaX, int _pozycjaY, Przynaleznosc _gracz, int _id);
 	~Gangster();
 
-	bool WykonajRuch(Kierunek kierunekRuchu, Pionek*** aktualnaMapa, const int rozmiarMapy) override;
+	bool WykonajRuch(Koordynaty::Kierunek kierunekRuchu, Pionek*** aktualnaMapa, const int rozmiarMapy) override;
 	char WyswietlZnak(Przynaleznosc czyjeWyswietlic) const override;
 };
 

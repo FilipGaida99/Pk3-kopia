@@ -1,8 +1,6 @@
 #include "Pionek.h"
 
-#include <string.h>
-
-
+using Kierunek = Koordynaty::Kierunek;
 
 bool Pionek::CzyMoznaPrzejscNaPozycje(int pozycjaDocelowaX, int pozycjaDocelowaY, Pionek *** aktualnaMapa, const int rozmiarMapy) const
 {
@@ -12,8 +10,13 @@ bool Pionek::CzyMoznaPrzejscNaPozycje(int pozycjaDocelowaX, int pozycjaDocelowaY
 	return aktualnaMapa[pozycjaDocelowaY][pozycjaDocelowaX]==nullptr;
 }
 
+bool Pionek::CzyMoznaPrzejscNaPozycje(Koordynaty& pozycjaDocelowa, Pionek *** aktualnaMapa, const int rozmiarMapy) const
+{
+	return CzyMoznaPrzejscNaPozycje(pozycja.x, pozycja.y, aktualnaMapa, rozmiarMapy);
+}
 
-Pionek::Pionek(char _znakWyswietlany, int _pozycjaX, int _pozycjaY): znakWyswietlany(_znakWyswietlany), pozycjaX(_pozycjaX), pozycjaY(_pozycjaY)
+
+Pionek::Pionek(char _znakWyswietlany, int _pozycjaX, int _pozycjaY): znakWyswietlany(_znakWyswietlany), pozycja(Koordynaty(_pozycjaX,_pozycjaY))
 {
 }
 
@@ -22,21 +25,21 @@ Pionek::~Pionek()
 {
 }
 
-int Pionek::PozycjaX()
+int Pionek::PozycjaX() const
 {
-	return pozycjaX;
+	return pozycja.x;
 }
 
-int Pionek::PozycjaY()
+int Pionek::PozycjaY() const
 {
-	return pozycjaY;
+	return pozycja.y;
 }
 
 
 bool Pionek::CzyJestZablokowany(Pionek *** aktualnaMapa, const int rozmiarMapy) const
 {
-	for (int i = pozycjaX - 1; i <= pozycjaX + 1; i++) {
-		for (int j = pozycjaY - 1; j <= pozycjaY + 1; j++) {
+	for (int i = pozycja.x - 1; i <= pozycja.x + 1; i++) {
+		for (int j = pozycja.y - 1; j <= pozycja.y + 1; j++) {
 			if (CzyMoznaPrzejscNaPozycje(i, j, aktualnaMapa, rozmiarMapy)) {
 				return false;
 			}
@@ -45,49 +48,13 @@ bool Pionek::CzyJestZablokowany(Pionek *** aktualnaMapa, const int rozmiarMapy) 
 	return true;
 }
 
-void Pionek::UzyskajNowaPozycje(int & pozycjaX, int & pozycjaY, Kierunek kierunekRuchu)
-{
-	switch (kierunekRuchu)
-	{
-	case Pionek::N:
-	case Pionek::NE:
-	case Pionek::NW:
-		pozycjaY--;
-		break;
-	case Pionek::S:
-	case Pionek::SE:
-	case Pionek::SW:
-		pozycjaY++;
-		break;
-	default:
-		break;
-	}
-	switch (kierunekRuchu) {
-	case Pionek::E:
-	case Pionek::NE:
-	case Pionek::SE:
-		pozycjaX++;
-		break;
-	case Pionek::W:
-	case Pionek::NW:
-	case Pionek::SW:
-		pozycjaX--;
-		break;
-	default:
-		break;
-	}
-}
-
 bool Pionek::PoruszOJednoPole(Kierunek kierunekRuchu, Pionek *** aktualnaMapa, const int rozmiarMapy)
 {
-	int nowaPozycjaX = pozycjaX;
-	int nowaPozycjaY = pozycjaY;
-	UzyskajNowaPozycje(nowaPozycjaX, nowaPozycjaY, kierunekRuchu);
-	if (CzyMoznaPrzejscNaPozycje(nowaPozycjaX, nowaPozycjaY, aktualnaMapa, rozmiarMapy)) {
-		aktualnaMapa[nowaPozycjaY][nowaPozycjaX] = this;
-		aktualnaMapa[pozycjaY][pozycjaX] = nullptr;
-		pozycjaX = nowaPozycjaX;
-		pozycjaY = nowaPozycjaY;
+	Koordynaty nowaPozycja = pozycja + kierunekRuchu;
+	if (CzyMoznaPrzejscNaPozycje(nowaPozycja.x, nowaPozycja.y, aktualnaMapa, rozmiarMapy)) {
+		aktualnaMapa[nowaPozycja.y][nowaPozycja.x] = this;
+		aktualnaMapa[pozycja.y][pozycja.x] = nullptr;
+		pozycja = nowaPozycja;
 		return true;
 	}
 	else {
@@ -100,31 +67,3 @@ char Pionek::WyswietlZnak(Przynaleznosc czyjeWyswietlic) const
 	return znakWyswietlany;
 }
 
-Pionek::Kierunek Pionek::KierunekZStr(const char * kierunekStr)
-{
-	if (strcmp(kierunekStr, "N") == 0) {
-		return N;
-	}
-	if (strcmp(kierunekStr, "NE") == 0) {
-		return NE;
-	}
-	if (strcmp(kierunekStr, "E") == 0) {
-		return E;
-	}
-	if (strcmp(kierunekStr, "SE") == 0) {
-		return SE;
-	}
-	if (strcmp(kierunekStr, "S") == 0) {
-		return S;
-	}
-	if (strcmp(kierunekStr, "SW") == 0) {
-		return SW;
-	}
-	if (strcmp(kierunekStr, "W") == 0) {
-		return W;
-	}
-	if (strcmp(kierunekStr, "NW") == 0) {
-		return NW;
-	}
-	return NILL;
-}

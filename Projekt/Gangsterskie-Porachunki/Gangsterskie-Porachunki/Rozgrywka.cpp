@@ -1,5 +1,7 @@
 #include "Rozgrywka.h"
+
 #include <iostream>
+#include "Koordynaty.h"
 
 using namespace std;
 
@@ -98,7 +100,7 @@ bool Rozgrywka::PoruszWWprowadzonymKierunku(Pionek * wybranyPionek)
 {
 	constexpr int rozmiarDanychWejsciowych = 4;
 	char* daneWejsciowe = new char[rozmiarDanychWejsciowych];
-	Pionek::Kierunek kierunekRuchu;
+	Koordynaty::Kierunek kierunekRuchu;
 	while (true) {
 		cin.getline(daneWejsciowe, rozmiarDanychWejsciowych - 1);
 		//Sprawdzenie czy nie wprowadzono pustego ci¹gu
@@ -109,8 +111,8 @@ bool Rozgrywka::PoruszWWprowadzonymKierunku(Pionek * wybranyPionek)
 		UsunWielkoscLiter(daneWejsciowe);
 		try {
 			SprawdzUzycieKomendy(daneWejsciowe);
-			kierunekRuchu = Pionek::KierunekZStr(daneWejsciowe);
-			if (kierunekRuchu != Pionek::NILL) {
+			kierunekRuchu = Koordynaty::KierunekZStr(daneWejsciowe);
+			if (kierunekRuchu != Koordynaty::NILL) {
 				break;
 			}
 			cout << "Podano niepoprawna wartosc. Podaj N, NE, E, SE, S, SW, W, NW: ";

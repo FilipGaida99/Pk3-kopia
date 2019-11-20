@@ -1,6 +1,6 @@
 #include "Walizka.h"
 
-
+using Kierunek = Koordynaty::Kierunek;
 
 Walizka::Walizka(): Walizka(-1, -1)
 {
@@ -26,10 +26,10 @@ bool Walizka::WykonajRuch(Kierunek kierunekRuchu, Pionek *** aktualnaMapa, const
 
 Przynaleznosc Walizka::NaCzyjejStronie(int rozmiarMapy) const
 {
-	if (pozycjaX == 0) {
+	if (pozycja.x == 0) {
 		return Pierwszy;
 	}
-	if (pozycjaX == rozmiarMapy - 1) {
+	if (pozycja.x == rozmiarMapy - 1) {
 		return Drugi;
 	}
 	return Neutralny;

@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Gangster.cpp" />
+    <ClCompile Include="Koordynaty.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Pionek.cpp" />
     <ClCompile Include="Rozgrywka.cpp" />
@@ -160,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gangster.h" />
+    <ClInclude Include="Koordynaty.h" />
     <ClInclude Include="Pionek.h" />
     <ClInclude Include="Rozgrywka.h" />
     <ClInclude Include="Walizka.h" />

@@ -1,35 +1,34 @@
 #ifndef PIONEK_CLASS
 #define PIONEK_CLASS
 
+#include "Koordynaty.h"
+
 enum Przynaleznosc { Pierwszy, Drugi, Neutralny };
 
 class Pionek
 {
-public:
-	enum Kierunek{N, NE, E, SE, S, SW, W, NW, NILL};
-	
+
 private:
 	char znakWyswietlany;
 
 	bool CzyMoznaPrzejscNaPozycje(int pozycjaDocelowaX, int pozycjaDocelowaY, Pionek*** aktualnaMapa, const int rozmiarMapy) const;
-	
+	bool CzyMoznaPrzejscNaPozycje(Koordynaty& pozycjaDocelowa, Pionek*** aktualnaMapa, const int rozmiarMapy) const;
+
 protected: 
-	int pozycjaX;
-	int pozycjaY;
+	Koordynaty pozycja;
 public:
 	Pionek() = delete;
 	Pionek(char _znakWyswietlany, int _pozycjaX, int _pozycjaY);
 	virtual ~Pionek();
 
-	int PozycjaX();
-	int PozycjaY();
+	int PozycjaX() const;
+	int PozycjaY() const;
+
 	bool CzyJestZablokowany(Pionek*** aktualnaMapa, const int rozmiarMapy) const;
-	void UzyskajNowaPozycje(int& pozycjaX, int& pozycjaY, Kierunek kierunekRuchu);
-	bool PoruszOJednoPole(Kierunek kierunekRuchu,  Pionek*** aktualnaMapa, const int rozmiarMapy);
-	virtual bool WykonajRuch(Kierunek kierunekRuchu, Pionek*** aktualnaMapa, const int rozmiarMapy) = 0;
+	bool PoruszOJednoPole(Koordynaty::Kierunek kierunekRuchu,  Pionek*** aktualnaMapa, const int rozmiarMapy);
+	virtual bool WykonajRuch(Koordynaty::Kierunek kierunekRuchu, Pionek*** aktualnaMapa, const int rozmiarMapy) = 0;
 	virtual char WyswietlZnak(Przynaleznosc czyjeWyswietlic) const;
 
-	static Kierunek KierunekZStr(const char* kierunekStr);
 };
 
 #endif // !PIONEK_CLASS
