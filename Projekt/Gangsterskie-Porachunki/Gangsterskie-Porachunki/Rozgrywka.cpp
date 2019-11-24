@@ -54,6 +54,7 @@ bool Rozgrywka::CzyGangsterzySaZablokowani(Gangster ** gangsterzyGracza) const
 
 Przynaleznosc Rozgrywka::WykonajTure(Przynaleznosc czyjaTura, Gangster ** gangsterzyGracza)
 {
+	//Pierwsza czêœæ tury, ruch walizk¹
 	if (!ruchWalizkaWykonany) {
 		WyswietlMape();
 		if (walizka->CzyJestZablokowany(mapa, rozmiarMapy)) {
@@ -75,6 +76,7 @@ Przynaleznosc Rozgrywka::WykonajTure(Przynaleznosc czyjaTura, Gangster ** gangst
 	}
 	ruchWalizkaWykonany = true;
 
+	//Druga czêœæ tury, ruch wybranym gangsterem
 	if (CzyGangsterzySaZablokowani(gangsterzyGracza)) {
 		cout << "Wszyscy gangsterzy zablokowani" << endl;
 		return czyjaTura == Pierwszy ? Drugi : Pierwszy;
@@ -95,6 +97,23 @@ Przynaleznosc Rozgrywka::WykonajTure(Przynaleznosc czyjaTura, Gangster ** gangst
 	WyswietlMape();
 	ruchWalizkaWykonany = false;
 	return Neutralny;
+}
+
+bool Rozgrywka::SprobujOglosicZwyciezce(Przynaleznosc wynikTury) const
+{
+	switch (wynikTury)
+	{
+	case Pierwszy:
+		cout << "\n\nWygral gracz pierwszy!\n\n";
+		break;
+	case Drugi:
+		cout << "\n\nWygral gracz drugi!\n\n";
+		break;
+	case Neutralny:
+	default:
+		return false;
+	}
+	return true;
 }
 
 bool Rozgrywka::PoruszWWprowadzonymKierunku(Pionek * wybranyPionek)
@@ -229,23 +248,6 @@ bool Rozgrywka::PetlaGry()
 	WyswietlMape();
 	
 	return false;
-}
-
-bool Rozgrywka::SprobujOglosicZwyciezce(Przynaleznosc wynikTury) const
-{
-	switch (wynikTury)
-	{
-	case Pierwszy:
-		cout << "\n\nWygral gracz pierwszy!\n\n";
-		break;
-	case Drugi:
-		cout << "\n\nWygral gracz drugi!\n\n";
-		break;
-	case Neutralny:
-	default:
-		return false;
-	}
-	return true;
 }
 
 void Rozgrywka::WyswietlMape(Przynaleznosc czyjeWyswietlic) const

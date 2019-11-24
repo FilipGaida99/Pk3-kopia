@@ -9,13 +9,17 @@ public:
 	int x;
 	int y;
 
+	//Konstruktory i destruktory
 	Koordynaty();
 	Koordynaty(int _x, int _y);
 	~Koordynaty();
 
+	//Funkcja zwraca kierunek na podstawie dowolnego ci¹gu znaków zakoñczonego '\0'
 	static Kierunek KierunekZStr(const char* kierunekStr);
 
+	//Operator przesuwaj¹cy koordynaty zgodnie z kierunkiem
 	Koordynaty operator+(Kierunek kierunekRuchu);
+	//Operator przesuwaj¹cy koordynaty zgodnie z kierunkiem
 	Koordynaty& operator+=(Kierunek kierunekRuchu);
 
 };

@@ -16,16 +16,21 @@ private:
 	static constexpr char domyslnaNazwaPliku[] = "Zapis.dat";
 	char* nazwaPliku;
 
+	//Funkcja odczytuj¹ca klasê z strumienia binarnego i wpisuj¹ca j¹ na mapê
 	template <class T>
 	void OdczytajKlaseZBin(std::ifstream& plik, T ** ptrDoWczytania, Pionek*** mapa) const;
 
 public:
+	//Konstruktory i destruktory
 	Zapis();
 	Zapis(const char* _nazwaPliku);
 	~Zapis();
 
+	//Operator przenosz¹cy do zmieniania aktualnie œledzonego pliku zapisu
 	Zapis& operator=(Zapis&& rZapis);
+	//Operator do zapisywania rozgrywki
 	Zapis& operator<<(const Rozgrywka& _rozgrywka);
+	//Operator do wczytywania rozgrywki
 	Zapis& operator>>(Rozgrywka& _rozgrywka);
 };
 #endif //!ZAPIS_CLASS
