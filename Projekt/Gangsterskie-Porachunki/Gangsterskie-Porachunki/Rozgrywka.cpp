@@ -180,7 +180,8 @@ Gangster * Rozgrywka::WybierzGangstera(Gangster ** gangsterzyGracza)
 	return gangsterzyGracza[--numerPionka];
 }
 
-Rozgrywka::Rozgrywka(int ileArg, const char* argWierszaPolecen[]): rozmiarMapy(5), mapa(new Pionek**[rozmiarMapy]), tura(1), czyRozpoczacZPliku(false)
+Rozgrywka::Rozgrywka(int ileArg, const char* argWierszaPolecen[]): rozmiarMapy(5), czyjaTura(Pierwszy), ruchWalizkaWykonany(false), tura(1), mapa(new Pionek**[rozmiarMapy]), walizka(nullptr),
+																   gracz1(new Gangster*[rozmiarMapy]), gracz2(new Gangster*[rozmiarMapy]), czyRozpoczacZPliku(false)
 {
 	if (ileArg >= 3) {
 		plikZapisu = move(Zapis(argWierszaPolecen[2]));
@@ -194,8 +195,6 @@ Rozgrywka::Rozgrywka(int ileArg, const char* argWierszaPolecen[]): rozmiarMapy(5
 			mapa[i][j] = nullptr;
 		}
 	}
-	gracz1 = new Gangster*[rozmiarMapy];
-	gracz2 = new Gangster*[rozmiarMapy];
 }
 
 Rozgrywka::~Rozgrywka()
