@@ -1,6 +1,7 @@
 #include "Rozgrywka.h"
 
 #include <iostream>
+#include <string.h>
 #include "Koordynaty.h"
 
 using namespace std;
@@ -10,7 +11,7 @@ void Rozgrywka::WyczyscBufor() const
 	char pozostalosc;
 	do {
 		pozostalosc = getchar();
-	} while (pozostalosc != '\n' && pozostalosc!=EOF);
+	} while (pozostalosc != '\n' && pozostalosc != EOF);
 }
 
 char * Rozgrywka::UsunWielkoscLiter(char * str) const
@@ -221,7 +222,6 @@ bool Rozgrywka::PetlaGry()
 		if (!SprobujOglosicZwyciezce(WykonajTure(Drugi, gracz2))) {
 			czyjaTura = Pierwszy;
 			tura++;
-			plikZapisu << *this;
 			cout << "\n\n\n\n\n\n\n\n";
 			return true;
 		}

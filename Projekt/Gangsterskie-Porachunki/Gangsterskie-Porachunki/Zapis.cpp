@@ -4,6 +4,8 @@
 
 using namespace std;
 
+constexpr char Zapis::domyslnaNazwaPliku[];
+
 template<class T>
 void Zapis::OdczytajKlaseZBin(std::ifstream & plik, T ** ptrDoWczytania, Pionek *** mapa) const
 {
