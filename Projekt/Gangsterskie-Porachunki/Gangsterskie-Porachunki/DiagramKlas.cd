@@ -5,17 +5,13 @@
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
-    <NestedTypes>
-      <Enum Name="Pionek::Kierunek" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Pionek.h</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>CJAAAAAAAAAAAIAAAAGAQRAAAEAAAAABQAAAAQgAAAA=</HashCode>
+      <HashCode>AJAAAAAAAAAAAAAEAACAQRAAAAAAAAABQAAAAQgAAAA=</HashCode>
       <FileName>Pionek.h</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pozycja" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Gangster">
     <Position X="5.5" Y="7.5" Width="1.5" />
@@ -64,10 +60,10 @@
       <FileName>Rozgrywka.h</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="plikZapisu" />
       <Field Name="walizka" />
       <Field Name="gracz1" />
       <Field Name="gracz2" />
+      <Field Name="plikZapisu" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Zapis">
@@ -75,6 +71,20 @@
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAAAAAACQAgAAgAACAAAAAAAgAAAAABA=</HashCode>
       <FileName>Zapis.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Koordynaty">
+    <Position X="11" Y="2" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Koordynaty::Kierunek" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Koordynaty.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAEBAQAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Koordynaty.h</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
