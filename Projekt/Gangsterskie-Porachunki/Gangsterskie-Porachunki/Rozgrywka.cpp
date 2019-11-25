@@ -210,7 +210,7 @@ Rozgrywka::~Rozgrywka()
 	delete[] gracz2;
 }
 
-bool Rozgrywka::Rozpocznij()
+void Rozgrywka::Rozpocznij()
 {
 	if (czyRozpoczacZPliku) {
 		plikZapisu >> *this;
@@ -223,7 +223,6 @@ bool Rozgrywka::Rozpocznij()
 		}
 		mapa[polowaRozmiaruMapy][polowaRozmiaruMapy] = walizka = new Walizka(polowaRozmiaruMapy, polowaRozmiaruMapy);
 	}
-	return true;
 }
 
 bool Rozgrywka::PetlaGry()

@@ -37,7 +37,7 @@ private:
 	
 	//Metoda czyszcz¹ca pozosta³e znaki z bufora
 	void WyczyscBufor() const;
-	//Funckcja usuwaj¹ca wa¿noœæ wielkoœcio liter przez ustawienie wszystkich na wielkie
+	//Metoda usuwaj¹ca wa¿noœæ wielkoœcio liter przez ustawienie wszystkich na wielkie
 	char* UsunWielkoscLiter(char* str) const;
 	//Metoda koñczy siê wyrzuceniem wyj¹tku w przypadku wyst¹pienia komendy
 	void SprawdzUzycieKomendy(const char* strWejsciowy) const;
@@ -45,7 +45,7 @@ private:
 	bool CzyGangsterzySaZablokowani(Gangster** gangsterzyGracza) const;
 	//Metoda bêd¹ca interfejsem wykonwywania ruchu dla danego gracza
 	Przynaleznosc WykonajTure(Przynaleznosc czyjaTura, Gangster** gangsterzyGracza);
-	//Metoda wypisuj¹ca zwyciê¿ce na podstawie wyniku tury
+	//Metoda wypisuj¹ca zwyciêzce na podstawie wyniku tury
 	bool SprobujOglosicZwyciezce(Przynaleznosc wynikTury) const;
 	//Metoda porusza pionkiem w kierunku odczytanym ze strumienia wejœciowego
 	bool PoruszWWprowadzonymKierunku(Pionek* wybranyPionek);
@@ -58,7 +58,7 @@ public:
 	~Rozgrywka();
 
 	//Metoda rozpoczynaj¹ca grê
-	bool Rozpocznij();
+	void Rozpocznij();
 	//Metoda wykonuj¹ca naprzemiennie turê gracza pierwszego i drugiego
 	bool PetlaGry();
 	//Funckja wypisuj¹ca aktualn¹ mapê
