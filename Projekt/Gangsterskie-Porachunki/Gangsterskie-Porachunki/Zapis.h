@@ -16,7 +16,7 @@ private:
 	static constexpr char domyslnaNazwaPliku[] = "Zapis.dat";
 	char* nazwaPliku;
 
-	//Funkcja odczytuj¹ca klasê z strumienia binarnego i wpisuj¹ca j¹ na mapê
+	//Metoda odczytuj¹ca klasê z strumienia binarnego i wpisuj¹ca j¹ na mapê
 	template <class T>
 	void OdczytajKlaseZBin(std::ifstream& plik, T ** ptrDoWczytania, Pionek*** mapa) const;
 

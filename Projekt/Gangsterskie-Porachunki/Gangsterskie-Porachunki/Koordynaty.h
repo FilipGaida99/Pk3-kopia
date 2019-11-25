@@ -14,7 +14,7 @@ public:
 	Koordynaty(int _x, int _y);
 	~Koordynaty();
 
-	//Funkcja zwraca kierunek na podstawie dowolnego ci¹gu znaków zakoñczonego '\0'
+	//Metoda zwraca kierunek na podstawie dowolnego ci¹gu znaków zakoñczonego '\0'
 	static Kierunek KierunekZStr(const char* kierunekStr);
 
 	//Operator przesuwaj¹cy koordynaty zgodnie z kierunkiem

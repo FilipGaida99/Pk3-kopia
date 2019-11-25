@@ -35,19 +35,19 @@ private:
 	friend Zapis& Zapis::operator<<(const Rozgrywka& _rozgrywaka);
 	friend Zapis& Zapis::operator>>(Rozgrywka& _ropzgrywka);
 	
-	//Funkcja czyszcz¹ca pozosta³e znaki z bufora
+	//Metoda czyszcz¹ca pozosta³e znaki z bufora
 	void WyczyscBufor() const;
 	//Funckcja usuwaj¹ca wa¿noœæ wielkoœcio liter przez ustawienie wszystkich na wielkie
 	char* UsunWielkoscLiter(char* str) const;
-	//Funkcja koñczy siê wyrzuceniem wyj¹tku w przypadku wyst¹pienia komendy
+	//Metoda koñczy siê wyrzuceniem wyj¹tku w przypadku wyst¹pienia komendy
 	void SprawdzUzycieKomendy(const char* strWejsciowy) const;
-	//Funkcja sprawdza czy gracz bêdzie w stanie poruszyæ którymkolwiek z gangsterów
+	//Metoda sprawdza czy gracz bêdzie w stanie poruszyæ którymkolwiek z gangsterów
 	bool CzyGangsterzySaZablokowani(Gangster** gangsterzyGracza) const;
-	//Funkcja bêd¹ca interfejsem wykonwywania ruchu dla danego gracza
+	//Metoda bêd¹ca interfejsem wykonwywania ruchu dla danego gracza
 	Przynaleznosc WykonajTure(Przynaleznosc czyjaTura, Gangster** gangsterzyGracza);
-	//Funkcja wypisuj¹ca zwyciê¿ce na podstawie wyniku tury
+	//Metoda wypisuj¹ca zwyciê¿ce na podstawie wyniku tury
 	bool SprobujOglosicZwyciezce(Przynaleznosc wynikTury) const;
-	//Funkcja porusza pionkiem w kierunku odczytanym ze strumienia wejœciowego
+	//Metoda porusza pionkiem w kierunku odczytanym ze strumienia wejœciowego
 	bool PoruszWWprowadzonymKierunku(Pionek* wybranyPionek);
 	//Funckja wybiera gangstera na podstawie danych ze strumenia wejœciowego
 	Gangster* WybierzGangstera(Gangster** gangsterzyGracza);
@@ -57,9 +57,9 @@ public:
 	Rozgrywka(int ileArg, const char* argWierszaPolecen[]);
 	~Rozgrywka();
 
-	//Funkcja rozpoczynaj¹ca grê
+	//Metoda rozpoczynaj¹ca grê
 	bool Rozpocznij();
-	//Funkcja wykonuj¹ca naprzemiennie turê gracza pierwszego i drugiego
+	//Metoda wykonuj¹ca naprzemiennie turê gracza pierwszego i drugiego
 	bool PetlaGry();
 	//Funckja wypisuj¹ca aktualn¹ mapê
 	//Parametr czyjeWyswietlic informuje pionki o tym kto wykonuje turê
