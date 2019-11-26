@@ -194,20 +194,22 @@ Rozgrywka::Rozgrywka(int ileArg, const char* argWierszaPolecen[]): rozmiarMapy(5
 		for (int j = 0; j < rozmiarMapy; j++) {
 			mapa[i][j] = nullptr;
 		}
+
+		gracz1[i] = gracz2[i] = nullptr;
 	}
 }
 
 Rozgrywka::~Rozgrywka()
 {
-	delete walizka;
+	if(walizka) delete walizka;
 	for (int i = 0; i < rozmiarMapy; i++) {
-		delete[] mapa[i];
-		delete gracz1[i];
-		delete gracz2[i];
+		if(mapa[i]) delete[] mapa[i];
+		if(gracz1[i]) delete gracz1[i];
+		if(gracz2[i]) delete gracz2[i];
 	}
-	delete[] mapa;
-	delete[] gracz1;
-	delete[] gracz2;
+	if(mapa) delete[] mapa;
+	if(gracz1) delete[] gracz1;
+	if(gracz2) delete[] gracz2;
 }
 
 void Rozgrywka::Rozpocznij()
