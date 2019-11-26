@@ -29,7 +29,7 @@ bool Pionek::PoruszOJednoPole(Kierunek kierunekRuchu, Pionek *** aktualnaMapa, c
 	}
 }
 
-Pionek::Pionek(char _znakWyswietlany, int _pozycjaX, int _pozycjaY): znakWyswietlany(_znakWyswietlany), pozycja(Koordynaty(_pozycjaX,_pozycjaY))
+Pionek::Pionek(char _znakWyswietlany, int _pozycjaX, int _pozycjaY): znakWyswietlany(_znakWyswietlany), pozycja(_pozycjaX,_pozycjaY)
 {
 }
 
