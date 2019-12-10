@@ -57,6 +57,15 @@ void Rozgrywka::UstawPionek(Pionek * pionekDoUstawienia)
 	mapa[pionekDoUstawienia->PozycjaY()][pionekDoUstawienia->PozycjaX()] = pionekDoUstawienia;
 }
 
+void Rozgrywka::UstawDostepnePionki()
+{
+	for (int i = 0; i < rozmiarMapy; i++) {
+		UstawPionek(gracz1[i]);
+		UstawPionek(gracz2[i]);
+	}
+	UstawPionek(walizka);
+}
+
 Przynaleznosc Rozgrywka::WykonajTure(Przynaleznosc czyjaTura, Gangster ** gangsterzyGracza)
 {
 	//Pierwsza czêœæ tury, ruch walizk¹
@@ -192,14 +201,9 @@ Gangster * Rozgrywka::WybierzGangstera(Gangster ** gangsterzyGracza)
 }
 
 Rozgrywka::Rozgrywka(int ileArg, const char* argWierszaPolecen[]): rozmiarMapy(5), czyjaTura(Pierwszy), ruchWalizkaWykonany(false), tura(1), mapa(new Pionek**[rozmiarMapy]), walizka(new Walizka(rozmiarMapy/2, rozmiarMapy/2)),
-																   gracz1(new Gangster*[rozmiarMapy]), gracz2(new Gangster*[rozmiarMapy]), czyRozpoczacZPliku(false)
+																   gracz1(new Gangster*[rozmiarMapy]), gracz2(new Gangster*[rozmiarMapy])
 {
-	if (ileArg >= 3) {
-		plikZapisu = move(Zapis(argWierszaPolecen[2]));
-		if (!strcmp(argWierszaPolecen[1], "-in")) {
-			czyRozpoczacZPliku = true;
-		}
-	}
+	
 	for (int i = 0; i < rozmiarMapy; i++) {
 		mapa[i] = new Pionek*[rozmiarMapy];
 		for (int j = 0; j < rozmiarMapy; j++) {
@@ -209,6 +213,15 @@ Rozgrywka::Rozgrywka(int ileArg, const char* argWierszaPolecen[]): rozmiarMapy(5
 		gracz1[i] = new Gangster('O', 0, i, Pierwszy, i);
 		gracz2[i] = new Gangster('X', rozmiarMapy - 1, i, Drugi, i);
 	}
+
+	if (ileArg >= 3) {
+		plikZapisu = move(Zapis(argWierszaPolecen[2]));
+		if (!strcmp(argWierszaPolecen[1], "-in")) {
+			plikZapisu >> *this;
+		}
+	}
+
+	UstawDostepnePionki();
 }
 
 Rozgrywka::~Rozgrywka()
@@ -222,19 +235,6 @@ Rozgrywka::~Rozgrywka()
 	if(mapa) delete[] mapa;
 	if(gracz1) delete[] gracz1;
 	if(gracz2) delete[] gracz2;
-}
-
-void Rozgrywka::Rozpocznij()
-{
-	if (czyRozpoczacZPliku) {
-		plikZapisu >> *this;
-	}
-
-	for (int i = 0; i < rozmiarMapy; i++) {
-		UstawPionek(gracz1[i]);
-		UstawPionek(gracz2[i]);
-	}
-	UstawPionek(walizka);
 }
 
 bool Rozgrywka::PetlaGry()

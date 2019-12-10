@@ -12,6 +12,7 @@ enum Komenda { Zapisz_Graj, Zapisz_Wyjdz, Wyjdz, Brak };
 class Rozgrywka
 {
 private:
+	//Domyœlnie 5 - zainicjowane w konstuktorze
 	const int rozmiarMapy;
 
 	//Zmienne steruj¹ce kolejnoœci¹ ruchu po wczytaniu gry
@@ -27,8 +28,6 @@ private:
 	Gangster** gracz1;
 	Gangster** gracz2;
 
-	//Zmienna steruj¹ca sposobem rozpoczêcia gry
-	bool czyRozpoczacZPliku;
 	//Obiekt przechowuj¹cy aktualny plik zapisu oraz udostêpniaj¹cy go
 	Zapis plikZapisu;
 	//ZaprzjaŸnione operatory przypisania
@@ -45,7 +44,8 @@ private:
 	bool CzyGangsterzySaZablokowani(Gangster** gangsterzyGracza) const;
 	//Metoda ustawiaj¹ca pionek na w³aœciwej pozycjach
 	void UstawPionek(Pionek* pionekDoUstawienia);
-
+	//Metoda ustawia wszystkie pionki dostêpne w danej rozgrywce
+	void UstawDostepnePionki();
 	//Metoda bêd¹ca interfejsem wykonwywania ruchu dla danego gracza
 	Przynaleznosc WykonajTure(Przynaleznosc czyjaTura, Gangster** gangsterzyGracza);
 	//Metoda wypisuj¹ca zwyciêzce na podstawie wyniku tury
@@ -61,8 +61,6 @@ public:
 	Rozgrywka(int ileArg, const char* argWierszaPolecen[]);
 	~Rozgrywka();
 
-	//Metoda rozpoczynaj¹ca grê
-	void Rozpocznij();
 	//Metoda wykonuj¹ca naprzemiennie turê gracza pierwszego i drugiego
 	bool PetlaGry();
 	//Funckja wypisuj¹ca aktualn¹ mapê

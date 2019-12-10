@@ -18,6 +18,7 @@ private:
 	bool CzyMoznaPrzejscNaPozycje(Koordynaty& pozycjaDocelowa, Pionek*** aktualnaMapa, const int rozmiarMapy) const;
 
 protected: 
+	//Aktualna pozycja pionka na mapie
 	Koordynaty pozycja;
 
 	//Metoda porusza pionkiem o jedno pole, wykorzystywane przez klasy potomne do definicji ruchu
