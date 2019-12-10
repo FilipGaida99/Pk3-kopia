@@ -141,6 +141,9 @@ bool Rozgrywka::PoruszWWprowadzonymKierunku(Pionek * wybranyPionek)
 		}
 		//Obs³uga komend
 		catch (Komenda uzytaKomedna) {
+			//Zapis gry mo¿e spowodowaæ wyjœcie z tej przestrzeni bez usuniêcia danych
+			if(daneWejsciowe) delete[] daneWejsciowe;
+
 			switch (uzytaKomedna)
 			{
 			case Zapisz_Graj:
@@ -150,15 +153,18 @@ bool Rozgrywka::PoruszWWprowadzonymKierunku(Pionek * wybranyPionek)
 			case Zapisz_Wyjdz:
 				plikZapisu << *this;
 			case Wyjdz:
-				delete[] daneWejsciowe;
 				throw uzytaKomedna;
 			default:
 				break;
 			}
+
+			//Po udanym zapisie nale¿y przywróciæ pamiêæ do w³aœciwego stanu
+			daneWejsciowe = new char[rozmiarDanychWejsciowych];
+
 		}
 	}
 
-	delete[] daneWejsciowe;
+	if(daneWejsciowe) delete[] daneWejsciowe;
 	return wybranyPionek->WykonajRuch(kierunekRuchu, mapa, rozmiarMapy);;
 }
 
