@@ -10,8 +10,10 @@ template<class T>
 void Zapis::OdczytajKlaseZBin(std::ifstream & plik, T ** ptrDoWczytania, Pionek *** mapa) const
 {
 	T tymczasowy;
-	plik.read((char*)&tymczasowy, sizeof(T));
-	mapa[tymczasowy.PozycjaY()][tymczasowy.PozycjaX()] = *ptrDoWczytania = new T(tymczasowy);
+	if (Pionek* pionek = dynamic_cast<Pionek*>(&tymczasowy)) {
+		plik >> pionek;
+		mapa[tymczasowy.PozycjaY()][tymczasowy.PozycjaX()] = *ptrDoWczytania = new T(tymczasowy);
+	}
 }
 
 Zapis::Zapis() : Zapis(domyslnaNazwaPliku)
@@ -42,10 +44,9 @@ Zapis& Zapis::operator<<(const Rozgrywka& _rozgrywka)
 	ofstream plik(nazwaPliku, ios::binary);
 	if (plik) {
 		for (int i = 0; i < _rozgrywka.rozmiarMapy; i++) {
-			plik.write((char*)_rozgrywka.gracz1[i], sizeof(Gangster));
-			plik.write((char*)_rozgrywka.gracz2[i], sizeof(Gangster));
+			plik << _rozgrywka.gracz1[i] << _rozgrywka.gracz2[i];
 		}
-		plik.write((char*)_rozgrywka.walizka, sizeof(Walizka));
+		plik << _rozgrywka.walizka;
 		plik.write((char*)&_rozgrywka.tura, sizeof(int));
 		plik.write((char*)&_rozgrywka.ruchWalizkaWykonany, sizeof(bool));
 		plik.write((char*)&_rozgrywka.czyjaTura, sizeof(Przynaleznosc));

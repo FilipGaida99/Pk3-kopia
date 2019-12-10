@@ -1,5 +1,8 @@
 #include "Pionek.h"
 
+#include <fstream>
+
+using namespace std;
 using Kierunek = Koordynaty::Kierunek;
 
 bool Pionek::CzyMoznaPrzejscNaPozycje(int pozycjaDocelowaX, int pozycjaDocelowaY, Pionek *** aktualnaMapa, const int rozmiarMapy) const
@@ -65,3 +68,34 @@ char Pionek::WyswietlZnak(Przynaleznosc czyjeWyswietlic) const
 	return znakWyswietlany;
 }
 
+bool Pionek::Zapisz(ofstream& plik) const
+{
+	if (!plik) {
+		return false;
+	}
+	plik.write((const char*)&znakWyswietlany, sizeof(char));
+	plik.write((const char*)&pozycja, sizeof(Koordynaty));
+	return true;
+}
+
+bool Pionek::Wczytaj(ifstream& plik)
+{
+	if (!plik) {
+		return false;
+	}
+	plik.read((char*)&znakWyswietlany, sizeof(char));
+	plik.read((char*)&pozycja, sizeof(Koordynaty));
+	return true;
+}
+
+std::ofstream & operator<<(std::ofstream & plik, Pionek * pionek)
+{
+	pionek->Zapisz(plik);
+	return plik;
+}
+
+std::ifstream & operator>>(std::ifstream & plik, Pionek * pionek)
+{
+	pionek->Wczytaj(plik);
+	return plik;
+}
