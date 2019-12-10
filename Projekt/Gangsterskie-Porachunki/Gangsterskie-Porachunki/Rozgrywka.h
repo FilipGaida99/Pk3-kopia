@@ -43,6 +43,9 @@ private:
 	void SprawdzUzycieKomendy(const char* strWejsciowy) const;
 	//Metoda sprawdza czy gracz bêdzie w stanie poruszyæ którymkolwiek z gangsterów
 	bool CzyGangsterzySaZablokowani(Gangster** gangsterzyGracza) const;
+	//Metoda ustawiaj¹ca pionek na w³aœciwej pozycjach
+	void UstawPionek(Pionek* pionekDoUstawienia);
+
 	//Metoda bêd¹ca interfejsem wykonwywania ruchu dla danego gracza
 	Przynaleznosc WykonajTure(Przynaleznosc czyjaTura, Gangster** gangsterzyGracza);
 	//Metoda wypisuj¹ca zwyciêzce na podstawie wyniku tury
@@ -51,6 +54,7 @@ private:
 	bool PoruszWWprowadzonymKierunku(Pionek* wybranyPionek);
 	//Funckja wybiera gangstera na podstawie danych ze strumenia wejœciowego
 	Gangster* WybierzGangstera(Gangster** gangsterzyGracza);
+
 public:
 	//Konstruktory i destruktory
 	Rozgrywka() = delete;

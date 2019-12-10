@@ -1,6 +1,5 @@
 #include "Gangster.h"
 
-using namespace std;
 using Kierunek = Koordynaty::Kierunek;
 
 Gangster::Gangster(): Gangster('E', -1, -1, Neutralny, -1)
@@ -27,24 +26,4 @@ char Gangster::WyswietlZnak(Przynaleznosc czyjeWyswietlic) const
 		return id + '1';
 	}
 	return Pionek::WyswietlZnak(czyjeWyswietlic);
-}
-
-bool Gangster::Zapisz(ofstream& plik) const
-{
-	if (!Pionek::Zapisz(plik)) {
-		return false;
-	}
-	plik.write((const char*)&czyjJest, sizeof(Przynaleznosc));
-	plik.write((const char*)&id, sizeof(int));
-	return true;
-}
-
-bool Gangster::Wczytaj(ifstream& plik)
-{
-	if (!Pionek::Wczytaj(plik)) {
-		return false;
-	}
-	plik.read((char*)&czyjJest, sizeof(Przynaleznosc));
-	plik.read((char*)&id, sizeof(int));
-	return true;
 }

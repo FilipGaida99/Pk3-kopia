@@ -52,6 +52,11 @@ bool Rozgrywka::CzyGangsterzySaZablokowani(Gangster ** gangsterzyGracza) const
 	return true;
 }
 
+void Rozgrywka::UstawPionek(Pionek * pionekDoUstawienia)
+{
+	mapa[pionekDoUstawienia->PozycjaY()][pionekDoUstawienia->PozycjaX()] = pionekDoUstawienia;
+}
+
 Przynaleznosc Rozgrywka::WykonajTure(Przynaleznosc czyjaTura, Gangster ** gangsterzyGracza)
 {
 	//Pierwsza czêœæ tury, ruch walizk¹
@@ -186,7 +191,7 @@ Gangster * Rozgrywka::WybierzGangstera(Gangster ** gangsterzyGracza)
 	return gangsterzyGracza[--numerPionka];
 }
 
-Rozgrywka::Rozgrywka(int ileArg, const char* argWierszaPolecen[]): rozmiarMapy(5), czyjaTura(Pierwszy), ruchWalizkaWykonany(false), tura(1), mapa(new Pionek**[rozmiarMapy]), walizka(nullptr),
+Rozgrywka::Rozgrywka(int ileArg, const char* argWierszaPolecen[]): rozmiarMapy(5), czyjaTura(Pierwszy), ruchWalizkaWykonany(false), tura(1), mapa(new Pionek**[rozmiarMapy]), walizka(new Walizka(rozmiarMapy/2, rozmiarMapy/2)),
 																   gracz1(new Gangster*[rozmiarMapy]), gracz2(new Gangster*[rozmiarMapy]), czyRozpoczacZPliku(false)
 {
 	if (ileArg >= 3) {
@@ -201,7 +206,8 @@ Rozgrywka::Rozgrywka(int ileArg, const char* argWierszaPolecen[]): rozmiarMapy(5
 			mapa[i][j] = nullptr;
 		}
 
-		gracz1[i] = gracz2[i] = nullptr;
+		gracz1[i] = new Gangster('O', 0, i, Pierwszy, i);
+		gracz2[i] = new Gangster('X', rozmiarMapy - 1, i, Drugi, i);
 	}
 }
 
@@ -223,14 +229,12 @@ void Rozgrywka::Rozpocznij()
 	if (czyRozpoczacZPliku) {
 		plikZapisu >> *this;
 	}
-	else {
-		const int polowaRozmiaruMapy = (rozmiarMapy / 2);
-		for (int i = 0; i < rozmiarMapy; i++) {
-			mapa[i][0] = gracz1[i] = new Gangster('O', 0, i, Pierwszy, i);
-			mapa[i][rozmiarMapy - 1] = gracz2[i] = new Gangster('X', rozmiarMapy - 1, i, Drugi, i);
-		}
-		mapa[polowaRozmiaruMapy][polowaRozmiaruMapy] = walizka = new Walizka(polowaRozmiaruMapy, polowaRozmiaruMapy);
+
+	for (int i = 0; i < rozmiarMapy; i++) {
+		UstawPionek(gracz1[i]);
+		UstawPionek(gracz2[i]);
 	}
+	UstawPionek(walizka);
 }
 
 bool Rozgrywka::PetlaGry()

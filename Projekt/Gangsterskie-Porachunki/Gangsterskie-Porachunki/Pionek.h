@@ -41,10 +41,11 @@ public:
 	//Metoda decyduj¹ca o wyœwietlanym znaku
 	virtual char WyswietlZnak(Przynaleznosc czyjeWyswietlic) const;
 	//Metoda s³u¿aca do zapisu klasy binarnego
-	virtual bool Zapisz(std::ofstream& plik) const;
+	bool Zapisz(std::ofstream& plik) const;
 	//Metoda s³u¿¹ca do odczytu klasy z pliku binarnego
-	virtual bool Wczytaj(std::ifstream& plik);
+	bool Wczytaj(std::ifstream& plik);
 };
+
 //Operatory strumieniowe do zapisywania
 std::ofstream& operator<<(std::ofstream& plik, Pionek* pionek);
 std::ifstream& operator>>(std::ifstream& plik, Pionek* pionek);

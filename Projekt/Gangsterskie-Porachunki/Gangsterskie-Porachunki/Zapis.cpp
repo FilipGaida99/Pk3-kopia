@@ -6,16 +6,6 @@ using namespace std;
 
 constexpr char Zapis::domyslnaNazwaPliku[];
 
-template<class T>
-void Zapis::OdczytajKlaseZBin(std::ifstream & plik, T ** ptrDoWczytania, Pionek *** mapa) const
-{
-	T tymczasowy;
-	if (Pionek* pionek = dynamic_cast<Pionek*>(&tymczasowy)) {
-		plik >> pionek;
-		mapa[tymczasowy.PozycjaY()][tymczasowy.PozycjaX()] = *ptrDoWczytania = new T(tymczasowy);
-	}
-}
-
 Zapis::Zapis() : Zapis(domyslnaNazwaPliku)
 {
 }
@@ -43,13 +33,16 @@ Zapis& Zapis::operator<<(const Rozgrywka& _rozgrywka)
 {
 	ofstream plik(nazwaPliku, ios::binary);
 	if (plik) {
+		//Zapis pionków
 		for (int i = 0; i < _rozgrywka.rozmiarMapy; i++) {
 			plik << _rozgrywka.gracz1[i] << _rozgrywka.gracz2[i];
 		}
 		plik << _rozgrywka.walizka;
-		plik.write((char*)&_rozgrywka.tura, sizeof(int));
-		plik.write((char*)&_rozgrywka.ruchWalizkaWykonany, sizeof(bool));
-		plik.write((char*)&_rozgrywka.czyjaTura, sizeof(Przynaleznosc));
+
+		//Zapis zmiennych steruj¹cych
+		plik.write((char*)&_rozgrywka.tura, sizeof(_rozgrywka.tura));
+		plik.write((char*)&_rozgrywka.ruchWalizkaWykonany, sizeof(_rozgrywka.ruchWalizkaWykonany));
+		plik.write((char*)&_rozgrywka.czyjaTura, sizeof(_rozgrywka.czyjaTura));
 
 		plik.close();
 	}
@@ -63,14 +56,16 @@ Zapis& Zapis::operator>>(Rozgrywka& _rozgrywka)
 {
 	ifstream plik(nazwaPliku, ios::binary);
 	if (plik) {
+		//Odczyt pionków
 		for (int i = 0; i < _rozgrywka.rozmiarMapy; i++) {
-			OdczytajKlaseZBin<Gangster>(plik, &_rozgrywka.gracz1[i], _rozgrywka.mapa);
-			OdczytajKlaseZBin<Gangster>(plik, &_rozgrywka.gracz2[i], _rozgrywka.mapa);
+			plik >> _rozgrywka.gracz1[i] >> _rozgrywka.gracz2[i];
 		}
-		OdczytajKlaseZBin<Walizka>(plik, &_rozgrywka.walizka, _rozgrywka.mapa);
-		plik.read((char*)&_rozgrywka.tura, sizeof(int));
-		plik.read((char*)&_rozgrywka.ruchWalizkaWykonany, sizeof(bool));
-		plik.read((char*)&_rozgrywka.czyjaTura, sizeof(Przynaleznosc));
+		plik >> _rozgrywka.walizka;
+
+		//Odczyt zmiennych steruj¹cych
+		plik.read((char*)&_rozgrywka.tura, sizeof(_rozgrywka.tura));
+		plik.read((char*)&_rozgrywka.ruchWalizkaWykonany, sizeof(_rozgrywka.ruchWalizkaWykonany));
+		plik.read((char*)&_rozgrywka.czyjaTura, sizeof(_rozgrywka.czyjaTura));
 
 		plik.close();
 	}
